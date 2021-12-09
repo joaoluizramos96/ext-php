@@ -1,0 +1,30 @@
+CREATE TABLE usuario
+(
+	id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(45) NOT NULL,
+    login VARCHAR(12) NOT NULL UNIQUE,
+    senha VARCHAR(12) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE veiculo
+(
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    nome VARCHAR(45) NOT NULL UNIQUE,
+    tipo INTEGER NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE locacao
+(
+    id INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+    veiculo_id INTEGER UNSIGNED NOT NULL,
+    usuario_id INTEGER UNSIGNED NOT NULL,
+    data_locacao DATE NOT NULL,
+    data_devolucao DATE,
+    nome VARCHAR(45) NOT NULL,
+    dados VARCHAR(200),
+    PRIMARY KEY (id),
+    FOREIGN KEY (veiculo_id) REFERENCES veiculo(id),
+    FOREIGN KEY (usuario_id) REFERENCES usuario(id)
+    );
